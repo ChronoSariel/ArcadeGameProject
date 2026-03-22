@@ -11,6 +11,7 @@ public class Player1Movement : MonoBehaviour
     public float knockbackStrength = 6.0f;
     public float iFramesTime = 1.0f;
     public float iFramesTimer;
+    public GameObject Camera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,7 @@ public class Player1Movement : MonoBehaviour
     void Update()
     {
         transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (1) on X axis.
+        transform.position = new Vector3(transform.position.x, transform.position.y, Camera.transform.position.z + 2); //Keep Player (1) on Z axis.
         if (Input.GetKey(KeyCode.A)) //Player (1) presses left.
         {
             if (groundSpeed > 0) //Deceleration.
