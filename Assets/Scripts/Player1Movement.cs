@@ -7,13 +7,12 @@ public class Player1Movement : MonoBehaviour
     public float friction = 0.046875f;
     public float maxSpeed = 6.0f;
     public float groundSpeed;
-    public float jumpHeight = 6.5f;
-    public float knockbackStrength = 6.0f;
+    public float jumpHeight = 4f;
+    public float knockbackStrength = 1.0f;
     public float iFramesTime = 1.0f;
     public float iFramesTimer;
     public GameObject Camera;
     public GameObject GameManager;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +58,14 @@ public class Player1Movement : MonoBehaviour
         {
              groundSpeed -= Mathf.Min(Mathf.Abs(groundSpeed), friction) * Mathf.Sign(groundSpeed); //Decellerate.
         }
+        if (Input.GetKeyDown(KeyCode.Space)&& isGrounded()) //Jumping!
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+    }
+    bool isGrounded() //Checks if Player (1) is grounded.
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.6f);
     }
     void OnTriggerEnter(Collider other)
     {
@@ -66,6 +73,11 @@ public class Player1Movement : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.GetComponent<GameManager>().P1Coins += 1;
+        }
+         if (other.gameObject.CompareTag("Hazard"))
+        {
+            Destroy(other.gameObject);
+            GameManager.GetComponent<GameManager>().P1Coins /= 2;
         }
     }
 }
