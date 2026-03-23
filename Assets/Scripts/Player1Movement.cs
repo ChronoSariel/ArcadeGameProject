@@ -12,6 +12,7 @@ public class Player1Movement : MonoBehaviour
     public float iFramesTime = 1.0f;
     public float iFramesTimer;
     public GameObject Camera;
+    public GameObject GameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +58,14 @@ public class Player1Movement : MonoBehaviour
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) //Player (1) is not pressing left or right.
         {
              groundSpeed -= Mathf.Min(Mathf.Abs(groundSpeed), friction) * Mathf.Sign(groundSpeed); //Decellerate.
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            GameManager.GetComponent<GameManager>().P1Coins += 1;
         }
     }
 }
