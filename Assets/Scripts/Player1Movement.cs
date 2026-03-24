@@ -13,17 +13,19 @@ public class Player1Movement : MonoBehaviour
     public float iFramesTimer;
     public GameObject Camera;
     public GameObject GameManager;
+    public float PlayerOffset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        PlayerOffset = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (1) on X axis.
-        transform.position = new Vector3(transform.position.x, transform.position.y, Camera.transform.position.z + 2); //Keep Player (1) on Z axis.
+        //transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (1) on X axis.
+        PlayerOffset += groundSpeed * Time.deltaTime;
+        transform.position = new Vector3(Camera.transform.position.x + PlayerOffset, transform.position.y, Camera.transform.position.z + 2); //Keep Player (1) on Z axis.
         if (Input.GetKey(KeyCode.A)) //Player (1) presses left.
         {
             if (groundSpeed > 0) //Deceleration.
