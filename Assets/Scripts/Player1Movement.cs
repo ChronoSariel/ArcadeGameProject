@@ -68,6 +68,7 @@ public class Player1Movement : MonoBehaviour
         {
             transform.position = new Vector3(Camera.transform.position.x, 1.5f, Camera.transform.position.z + 2);
             groundSpeed = 0;
+            PlayerOffset = 0;
             GameManager.GetComponent<GameManager>().P1Coins -= GameManager.GetComponent<GameManager>().P1Coins;
         }
     }
