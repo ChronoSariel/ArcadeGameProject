@@ -64,7 +64,7 @@ public class Player1Movement : MonoBehaviour
         }
         if (transform.position.y < -3) //Player (1) falls off stage.
         {
-            transform.position = new Vector3(0,2,Camera.transform.position.z +2);
+            transform.position = new Vector3(Camera.transform.position.x, 1.5f, Camera.transform.position.z + 2);
             groundSpeed = 0;
             GameManager.GetComponent<GameManager>().P1Coins -= GameManager.GetComponent<GameManager>().P1Coins;
         }
