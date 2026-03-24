@@ -62,6 +62,12 @@ public class Player1Movement : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
+        if (transform.position.y < -3) //Player (1) falls off stage.
+        {
+            transform.position = new Vector3(0,0,Camera.transform.position.z +2);
+            groundSpeed = 0;
+            GameManager.GetComponent<GameManager>().P1Coins -= GameManager.GetComponent<GameManager>().P1Coins;
+        }
     }
     bool isGrounded() //Checks if Player (1) is grounded.
     {
