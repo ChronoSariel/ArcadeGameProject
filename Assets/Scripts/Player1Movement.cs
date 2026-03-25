@@ -14,6 +14,8 @@ public class Player1Movement : MonoBehaviour
     public GameObject Camera;
     public GameObject GameManager;
     public float PlayerOffset;
+    public float SpeedUpTimer;
+    public float SpeedUpTime = 5.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -71,6 +73,13 @@ public class Player1Movement : MonoBehaviour
             PlayerOffset = 0;
             GameManager.GetComponent<GameManager>().P1Coins -= GameManager.GetComponent<GameManager>().P1Coins;
         }
+        SpeedUpTimer -= Time.deltaTime; //SpeedUp timer counts down.
+        if (SpeedUpTimer <= 0) //SpeedUp wears off.
+        {
+        acceleration = 0.046875f;
+        maxSpeed = 6.0f;
+        SpeedUpTimer = 0;
+        }
     }
     bool isGrounded() //Checks if Player (1) is grounded.
     {
@@ -87,6 +96,18 @@ public class Player1Movement : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.GetComponent<GameManager>().P1Coins /= 2;
+        }
+        if (other.gameObject.CompareTag("SpeedUp"))
+        {
+            Destroy(other.gameObject);
+            SpeedUpTimer = SpeedUpTime;
+            acceleration *= 2;
+            maxSpeed *= 2;
+        }
+        if (other.gameObject.CompareTag("SuperCoin"))
+        {
+            Destroy(other.gameObject);
+            GameManager.GetComponent<GameManager>().P1Coins += 10;
         }
     }
 }
