@@ -90,7 +90,7 @@ public class Player1Movement : MonoBehaviour
     }
     bool isGrounded() //Checks if Player (1) is grounded.
     {
-        return Physics.Raycast(transform.position, Vector3.down, 0.6f);
+        return Physics.Raycast(transform.position, Vector3.down, 0.25f);
     }
     void OnTriggerEnter(Collider other)
     {
