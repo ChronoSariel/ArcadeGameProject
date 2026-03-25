@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player1Movement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
     private AudioSource playerAudio;
     public AudioClip playerJump;
@@ -35,10 +35,10 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (1) on X axis.
+        //transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (2) on X axis.
         PlayerOffset += groundSpeed * Time.deltaTime;
         transform.position = new Vector3(Camera.transform.position.x + PlayerOffset, transform.position.y, Camera.transform.position.z + 2); //Keep Player (1) on Z axis.
-        if (Input.GetKey(KeyCode.A)) //Player (1) presses left.
+        if (Input.GetKey(KeyCode.LeftArrow)) //Player (2) presses left.
         {
             if (groundSpeed > 0) //Deceleration.
             {
@@ -53,7 +53,7 @@ public class Player1Movement : MonoBehaviour
                     groundSpeed = -maxSpeed;
             }
         }
-        if (Input.GetKey(KeyCode.D)) //Player (1) presses right.
+        if (Input.GetKey(KeyCode.RightArrow)) //Player (2) presses right.
         {
             if (groundSpeed < 0) //Deceleration.
             {
@@ -68,21 +68,21 @@ public class Player1Movement : MonoBehaviour
                     groundSpeed = maxSpeed;
             }
         }
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) //Player (1) is not pressing left or right.
+        if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) //Player (2) is not pressing left or right.
         {
              groundSpeed -= Mathf.Min(Mathf.Abs(groundSpeed), friction) * Mathf.Sign(groundSpeed); //Decellerate.
         }
-        if (Input.GetKeyDown(KeyCode.Space)&& isGrounded()) //Jumping!
+        if (Input.GetKeyDown(KeyCode.Keypad4)&& isGrounded()) //Jumping!
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             playerAudio.PlayOneShot(playerJump, 1.0f);
         }
-        if (transform.position.y < -3) //Player (1) falls off stage.
+        if (transform.position.y < -3) //Player (2) falls off stage.
         {
             transform.position = new Vector3(Camera.transform.position.x, 1.5f, Camera.transform.position.z + 2);
             groundSpeed = 0;
             PlayerOffset = 0;
-            GameManager.GetComponent<GameManager>().P1Coins -= GameManager.GetComponent<GameManager>().P1Coins;
+            GameManager.GetComponent<GameManager>().P2Coins -= GameManager.GetComponent<GameManager>().P2Coins;
         }
         SpeedUpTimer -= Time.deltaTime; //SpeedUp timer counts down.
         if ((SpeedUpTimer <= 0) && (SlowDownTimer <= 0 )) //SpeedUp wears off.
@@ -104,7 +104,7 @@ public class Player1Movement : MonoBehaviour
             iFramesTimer = 0;
         }
     }
-    bool isGrounded() //Checks if Player (1) is grounded.
+    bool isGrounded() //Checks if Player (2) is grounded.
     {
         return Physics.Raycast(transform.position, Vector3.down, 0.25f);
     }
@@ -113,7 +113,7 @@ public class Player1Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
-            GameManager.GetComponent<GameManager>().P1Coins += 1;
+            GameManager.GetComponent<GameManager>().P2Coins += 1;
             playerAudio.PlayOneShot(collectCoin, 1.0f);
             
         }
@@ -135,7 +135,7 @@ public class Player1Movement : MonoBehaviour
         if (other.gameObject.CompareTag("SuperCoin"))
         {
             Destroy(other.gameObject);
-            GameManager.GetComponent<GameManager>().P1Coins += 10;
+            GameManager.GetComponent<GameManager>().P2Coins += 10;
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
         if (other.gameObject.CompareTag("SpeedDown"))

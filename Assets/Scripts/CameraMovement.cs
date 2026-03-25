@@ -22,5 +22,9 @@ public class CameraMovement : MonoBehaviour
                 pointsIndex++;
             }
         }
+        else
+        {
+            Debug.Log ("End of path");
+        }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - SpeedUp
   - SuperCoin
   - SpeedDown
+  - KnockbackUp
   layers:
   - Default
   - TransparentFX
