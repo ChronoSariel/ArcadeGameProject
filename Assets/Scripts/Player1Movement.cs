@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Player1Movement : MonoBehaviour
 {
+    private AudioSource playerAudio;
+    public AudioClip playerJump;
+    public AudioClip collectCoin;
+    public AudioClip playerHurt;
+    public AudioClip collectPowerUp;
     public float acceleration = 0.046875f;
     public float deceleration = 0.5f;
     public float friction = 0.046875f;
@@ -20,6 +25,7 @@ public class Player1Movement : MonoBehaviour
     void Start()
     {
         PlayerOffset = transform.position.x;
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -65,6 +71,7 @@ public class Player1Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)&& isGrounded()) //Jumping!
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            playerAudio.PlayOneShot(playerJump, 1.0f);
         }
         if (transform.position.y < -3) //Player (1) falls off stage.
         {
@@ -91,11 +98,14 @@ public class Player1Movement : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.GetComponent<GameManager>().P1Coins += 1;
+            playerAudio.PlayOneShot(collectCoin, 1.0f);
+            
         }
          if (other.gameObject.CompareTag("Hazard"))
         {
             Destroy(other.gameObject);
             GameManager.GetComponent<GameManager>().P1Coins /= 2;
+            playerAudio.PlayOneShot(playerHurt, 1.0f);
         }
         if (other.gameObject.CompareTag("SpeedUp"))
         {
@@ -103,11 +113,13 @@ public class Player1Movement : MonoBehaviour
             SpeedUpTimer = SpeedUpTime;
             acceleration *= 2;
             maxSpeed *= 2;
+            playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
         if (other.gameObject.CompareTag("SuperCoin"))
         {
             Destroy(other.gameObject);
             GameManager.GetComponent<GameManager>().P1Coins += 10;
+            playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
     }
 }
