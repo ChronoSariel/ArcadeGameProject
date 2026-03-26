@@ -18,6 +18,7 @@ public class Player1Movement : MonoBehaviour
     public float iFramesTimer;
     public GameObject Camera;
     public GameObject GameManager;
+    public GameObject Player2;
     public float PlayerOffset;
     public float SpeedUpTimer;
     public float SpeedUpTime = 5.0f;
@@ -103,6 +104,12 @@ public class Player1Movement : MonoBehaviour
         {
             iFramesTimer = 0;
         }
+        KnockbackIncreaseTimer -= Time.deltaTime; //Knockback increase timer counts down.
+        if (KnockbackIncreaseTimer < 0) //Knockback increase wears off.
+        {
+            knockbackStrength = 1.0f;
+            KnockbackIncreaseTimer = 0;
+        }
     }
     bool isGrounded() //Checks if Player (1) is grounded.
     {
@@ -146,11 +153,22 @@ public class Player1Movement : MonoBehaviour
             maxSpeed /= 2;
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
+        if (other.gameObject.CompareTag("KnockbackUp"))
+        {
+            Destroy(other.gameObject);
+            KnockbackIncreaseTimer = KnockbackIncreaseTime;
+            knockbackStrength *=2;
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
 
+        }
     }
     void OnCollisionEnter(Collision other)
     {
-
+        if (other.gameObject.CompareTag("Player 2") && iFramesTimer <= 0)
+        {
+            PlayerOffset = ((Player2.GetComponent<Player2Movement>().groundSpeed * Player2.GetComponent<Player2Movement>().knockbackStrength) + PlayerOffset)/2;
+            playerAudio.PlayOneShot(playerHurt, 1.0f);
+        }
     }
 }
+

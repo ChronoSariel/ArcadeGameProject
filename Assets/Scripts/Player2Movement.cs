@@ -18,6 +18,7 @@ public class Player2Movement : MonoBehaviour
     public float iFramesTimer;
     public GameObject Camera;
     public GameObject GameManager;
+    public GameObject Player1;
     public float PlayerOffset;
     public float SpeedUpTimer;
     public float SpeedUpTime = 5.0f;
@@ -72,7 +73,7 @@ public class Player2Movement : MonoBehaviour
         {
              groundSpeed -= Mathf.Min(Mathf.Abs(groundSpeed), friction) * Mathf.Sign(groundSpeed); //Decellerate.
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4)&& isGrounded()) //Jumping!
+        if (Input.GetKeyDown(KeyCode.Alpha4)&& isGrounded()) //Jumping!
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             playerAudio.PlayOneShot(playerJump, 1.0f);
@@ -103,10 +104,16 @@ public class Player2Movement : MonoBehaviour
         {
             iFramesTimer = 0;
         }
-    }
+        KnockbackIncreaseTimer -= Time.deltaTime; //Knockback increase timer counts down.
+        if (KnockbackIncreaseTimer < 0) //Knockback increase wears off.
+        {
+        knockbackStrength = 1.0f;
+        KnockbackIncreaseTimer = 0;
+        }
     bool isGrounded() //Checks if Player (2) is grounded.
     {
         return Physics.Raycast(transform.position, Vector3.down, 0.25f);
+    }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -147,10 +154,22 @@ public class Player2Movement : MonoBehaviour
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
-
-    }
+        if (other.gameObject.CompareTag("KnockbackUp"))
+        {
+            Destroy(other.gameObject);
+            KnockbackIncreaseTimer = KnockbackIncreaseTime;
+            knockbackStrength *=2;
+            playerAudio.PlayOneShot(collectPowerUp, 1.0f);
+        
+        }
+        }
     void OnCollisionEnter(Collision other)
     {
-
+        if (other.gameObject.CompareTag("Player 1") && iFramesTimer <= 0)
+        {
+            PlayerOffset = ((Player1.GetComponent<Player1Movement>().groundSpeed * Player1.GetComponent<Player1Movement>().knockbackStrength) + PlayerOffset)/2;
+            playerAudio.PlayOneShot(playerHurt, 1.0f);
+        }
     }
 }
+

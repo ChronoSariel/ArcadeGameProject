@@ -484,6 +484,7 @@ MonoBehaviour:
   iFramesTimer: 0
   Camera: {fileID: 330585543}
   GameManager: {fileID: 1131148824}
+  Player1: {fileID: 1823437022}
   PlayerOffset: 0
   SpeedUpTimer: 0
   SpeedUpTime: 5
@@ -675,7 +676,7 @@ Transform:
   m_GameObject: {fileID: 285278526}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 10}
+  m_LocalPosition: {x: 4, y: 1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1604,8 +1605,8 @@ Transform:
   m_GameObject: {fileID: 872645418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -0, z: 10}
-  m_LocalScale: {x: 5, y: 0.25, z: 10}
+  m_LocalPosition: {x: 4, y: -0, z: 10}
+  m_LocalScale: {x: 4, y: 0.25, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2207,7 +2208,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 5, y: 0.25, z: 50}
+  m_LocalScale: {x: 4, y: 0.25, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2735,6 +2736,7 @@ MonoBehaviour:
   iFramesTimer: 0
   Camera: {fileID: 330585543}
   GameManager: {fileID: 1131148824}
+  Player2: {fileID: 150666501}
   PlayerOffset: 0
   SpeedUpTimer: 0
   SpeedUpTime: 5
@@ -3595,7 +3597,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1554311630174020081, guid: 4b441bde2cb09544fb0a0114b564eb40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.95
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1554311630174020081, guid: 4b441bde2cb09544fb0a0114b564eb40, type: 3}
       propertyPath: m_LocalPosition.y
