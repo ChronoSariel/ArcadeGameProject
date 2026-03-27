@@ -164,9 +164,10 @@ public class Player1Movement : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player 2") && iFramesTimer <= 0)
+        if (other.gameObject.CompareTag("Player 2") && Mathf.Abs(groundSpeed) < Mathf.Abs(Player2.GetComponent<Player2Movement>().groundSpeed))
         {
-            PlayerOffset = ((Player2.GetComponent<Player2Movement>().groundSpeed * Player2.GetComponent<Player2Movement>().knockbackStrength) + PlayerOffset)/2;
+            groundSpeed = Player2.GetComponent<Player2Movement>().groundSpeed * Player2.GetComponent<Player2Movement>().knockbackStrength * 2;
+            //Player2.GetComponent<Player2Movement>().groundSpeed = groundSpeed * knockbackStrength;
             playerAudio.PlayOneShot(playerHurt, 1.0f);
         }
     }
