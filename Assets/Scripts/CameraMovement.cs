@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class CameraMovement : MonoBehaviour
         else
         {
             Debug.Log ("End of path");
+            SceneManager.LoadScene("Title Sequence");
         }
     }
 }
