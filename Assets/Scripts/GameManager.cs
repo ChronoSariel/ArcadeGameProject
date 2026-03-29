@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +40,12 @@ public bool displayResults;
             {
                 WinText.text = "It's a Draw!";
             }
+            StartCoroutine(WaitToReset());
         }
     }
+    IEnumerator WaitToReset()
+        {
+            yield return new WaitForSeconds(5);
+            SceneManager.LoadScene("Title Sequence");
+        }
 }
