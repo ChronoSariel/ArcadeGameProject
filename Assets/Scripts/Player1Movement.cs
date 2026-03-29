@@ -26,6 +26,7 @@ public class Player1Movement : MonoBehaviour
     public float KnockbackIncreaseTime = 5.0f;
     public float SlowDownTimer;
     public float SlowDownTime = 5.0f;
+    public bool canNotInput;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +40,9 @@ public class Player1Movement : MonoBehaviour
         //transform.Translate(groundSpeed * Time.deltaTime, 0, 0); //Move Player (1) on X axis.
         PlayerOffset += groundSpeed * Time.deltaTime;
         transform.position = new Vector3(Camera.transform.position.x + PlayerOffset, transform.position.y, Camera.transform.position.z + 2); //Keep Player (1) on Z axis.
+        canNotInput = Camera.GetComponent<CameraMovement>().actCleared;
+    if (!canNotInput)
+    {
         if (Input.GetKey(KeyCode.A)) //Player (1) presses left.
         {
             if (groundSpeed > 0) //Deceleration.
@@ -78,6 +82,7 @@ public class Player1Movement : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             playerAudio.PlayOneShot(playerJump, 1.0f);
         }
+    }
         if (transform.position.y < -3) //Player (1) falls off stage.
         {
             transform.position = new Vector3(Camera.transform.position.x, 1.5f, Camera.transform.position.z + 2);

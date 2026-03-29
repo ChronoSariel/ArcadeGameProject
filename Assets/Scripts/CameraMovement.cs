@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]Transform[] points;
     private float moveSpeed = 2f;
     private int pointsIndex;
+    public bool actCleared;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,7 +27,8 @@ public class CameraMovement : MonoBehaviour
         else
         {
             Debug.Log ("End of path");
-            SceneManager.LoadScene("Title Sequence");
+            actCleared = true;
+            //SceneManager.LoadScene("Title Sequence");
         }
     }
 }
