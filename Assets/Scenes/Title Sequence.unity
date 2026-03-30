@@ -147,8 +147,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0, b: 0.65059185, a: 1}
+  m_Intensity: 25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -304,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 566e0caf0cc90e1428b49ccca6b5550f, type: 2}
+  - {fileID: 2100000, guid: 99e6c3c5632564ad1b67682f881bbda5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 1752316552}
   - component: {fileID: 1752316555}
   - component: {fileID: 1752316556}
+  - component: {fileID: 1752316557}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -920,6 +921,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!45 &1752316557
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752316551}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: ea4539e463a73482f848874e3be55ba0, type: 2}
 --- !u!1 &1850000750
 GameObject:
   m_ObjectHideFlags: 0
