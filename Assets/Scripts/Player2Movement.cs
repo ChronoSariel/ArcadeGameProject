@@ -182,7 +182,6 @@ public class Player2Movement : MonoBehaviour
             groundSpeed = 0;
             playerAudio.PlayOneShot(playerHurt, 1.0f);
         }
-    }
-
+}
 }
 
