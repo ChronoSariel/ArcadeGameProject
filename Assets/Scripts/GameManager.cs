@@ -11,6 +11,8 @@ public int P1Coins;
 public int P2Coins;
 public GameObject Camera;
 public GameObject Results;
+public GameObject Player1;
+public GameObject Player2;
 public TextMeshProUGUI WinText;
 public bool displayResults;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,8 @@ public bool displayResults;
         displayResults = Camera.GetComponent<CameraMovement>().actCleared;
         if (displayResults)
         {
+            Player1.GetComponent<Player1Movement>().groundSpeed = 0;
+            Player2.GetComponent<Player2Movement>().groundSpeed = 0;
             Results.gameObject.SetActive(true);
             if (P1Coins > P2Coins)
             {

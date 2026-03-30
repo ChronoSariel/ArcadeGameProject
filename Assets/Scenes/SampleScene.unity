@@ -2231,6 +2231,8 @@ MonoBehaviour:
   P2Coins: 0
   Camera: {fileID: 330585543}
   Results: {fileID: 363457405}
+  Player1: {fileID: 1823437022}
+  Player2: {fileID: 150666501}
   WinText: {fileID: 762792096}
   displayResults: 0
 --- !u!1 &1168389804
