@@ -176,6 +176,12 @@ public class Player2Movement : MonoBehaviour
             Player1.GetComponent<Player1Movement>().groundSpeed = 0;
             playerAudio.PlayOneShot(playerHurt, 1.0f);
         }
+        else if (other.gameObject.CompareTag("Player 1") && Mathf.Abs(groundSpeed) > Mathf.Abs(Player1.GetComponent<Player1Movement>().groundSpeed))
+        {
+            Player1.GetComponent<Player1Movement>().groundSpeed = groundSpeed * knockbackStrength * 2;
+            groundSpeed = 0;
+            playerAudio.PlayOneShot(playerHurt, 1.0f);
+        }
     }
 
 }
