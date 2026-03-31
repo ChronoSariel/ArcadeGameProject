@@ -141,7 +141,7 @@ public class Player2Movement : MonoBehaviour
             Destroy(other.gameObject);
             SpeedUpTimer = SpeedUpTime;
             acceleration *= 2;
-            maxSpeed *= 2;
+            maxSpeed = 12;
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
         if (other.gameObject.CompareTag("SuperCoin"))
@@ -155,7 +155,7 @@ public class Player2Movement : MonoBehaviour
             Destroy(other.gameObject);
             SlowDownTimer = SlowDownTime;
             acceleration /= 2;
-            maxSpeed /= 2;
+            maxSpeed = 3;
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
         }
             playerAudio.PlayOneShot(collectPowerUp, 1.0f);
