@@ -132,7 +132,7 @@ public class Player2Movement : MonoBehaviour
          if (other.gameObject.CompareTag("Hazard") && iFramesTimer <= 0)
         {
             Destroy(other.gameObject);
-            GameManager.GetComponent<GameManager>().P1Coins /= 2;
+            GameManager.GetComponent<GameManager>().P2Coins /= 2;
             playerAudio.PlayOneShot(playerHurt, 1.0f);
             iFramesTimer = iFramesTime;
         }
